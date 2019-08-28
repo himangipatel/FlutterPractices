@@ -1,0 +1,54 @@
+//                    TextField(
+//                      decoration: InputDecoration(
+//                        labelStyle:
+//                            TextStyle(color: Colors.white, fontSize: 24.0),
+//                        hintText: "Username",
+//                        hintStyle: TextStyle(color: Colors.white70),
+//                        contentPadding:
+//                            EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+//                        border: OutlineInputBorder(
+//                          borderRadius: BorderRadius.circular(30.0),
+//                        ),
+//                        enabledBorder: const OutlineInputBorder(
+//                          // width: 0.0 produces a thin "hairline" border
+//                          borderSide:
+//                              const BorderSide(color: Colors.white, width: 0.0),
+//                        ),
+//                      ),
+//                    ),
+
+
+The programming language used by flutter is DART , which is similar to JavaScript in a way that
+it also runs a single threaded event queue.
+The biggest benefit of using Flutter is that it directly generates the ARM binaries which will execute directly
+on the native platform running it faster.
+JavaScript based frameworks like “React Native” needs a bridge which converts the JavaS
+
+
+  GradientButton _signUpWidget(){
+    return GradientButton(
+      colors: [HexColor('#172C4B'), HexColor('#5F4B9B')],
+        onPressed: () async {
+          if (_key.currentState.validate()) {
+            _key.currentState.save();
+            Register newPost = new Register._(
+                name: _name,
+                email: _email,
+                password: _password,
+                deviceType: "android");
+            Register p = await callRegisterAPI(
+                "http://192.168.11.86:8080/register",
+                body: newPost.toMap());
+
+            if (p.isSuccess) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DashboardPage()));
+            } else {
+              print('else');
+            }
+
+            print(p.message);
+          }
+        }
+    );
+  }
